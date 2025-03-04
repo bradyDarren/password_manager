@@ -1,4 +1,5 @@
 from tkinter import * 
+from tkinter import messagebox
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
@@ -12,11 +13,15 @@ def add_pass():
     except FileNotFoundError:
         content = ''
 
-    with open (file=file_path, mode='a') as file:
-        if content:
-            file.write(f"\n{website_entry.get()}|{uname_entry.get()}|{password_entry.get()}")
-        else: 
-            file.write(f"{website_entry.get()}|{uname_entry.get()}|{password_entry.get()}")
+    is_ok = messagebox.askokcancel(title=website_entry.get(),message=f"You are saving: \nEmail: {uname_entry.get()}"
+                           f"\nPassword: {password_entry.get()} \nIs it ok to save?")
+
+    if is_ok:
+        with open (file=file_path, mode='a') as file:
+            if content:
+                file.write(f"\n{website_entry.get()}|{uname_entry.get()}|{password_entry.get()}")
+            else: 
+                file.write(f"{website_entry.get()}|{uname_entry.get()}|{password_entry.get()}")
     
     website_entry.delete(first=0, last=END)
     uname_entry.delete(first=0, last=END)
