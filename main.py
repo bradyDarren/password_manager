@@ -2,6 +2,25 @@ from tkinter import *
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
+    
+def add_pass():
+    file_path = 'data.txt'
+
+    try: 
+        with open(file=file_path, mode='r') as file: 
+            content = file.read().strip()
+    except FileNotFoundError:
+        content = ''
+
+    with open (file=file_path, mode='a') as file:
+        if content:
+            file.write(f"\n{website_entry.get()}|{uname_entry.get()}|{password_entry.get()}")
+        else: 
+            file.write(f"{website_entry.get()}|{uname_entry.get()}|{password_entry.get()}")
+    
+    website_entry.delete(first=0, last=END)
+    uname_entry.delete(first=0, last=END)
+    password_entry.delete(first=0, last=END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk() 
@@ -24,15 +43,17 @@ password.grid(column=0, row=3)
 #Entries
 website_entry = Entry(width=38)
 website_entry.grid(column=1, row=1, columnspan=2)
+website_entry.focus()
 uname_entry = Entry(width=38)
 uname_entry.grid(column=1, row=2, columnspan=2)
+uname_entry.insert(0, 'sample@gmail.com')
 password_entry = Entry(width=21)
 password_entry.grid(column=1, row=3)
 
 #Buttons
 generate_button = Button(text="Generate Password")
 generate_button.grid(column=2, row=3)
-add_button = Button(text="Add", width=36)
+add_button = Button(text="Add", width=36, command=add_pass)
 add_button.grid(column=1, row=4, columnspan=2)
 
 window.mainloop()
