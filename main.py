@@ -1,11 +1,24 @@
 from tkinter import * 
 from tkinter import messagebox
+import random
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+letters = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+]
+numbers = [1,2,3,4,5,6,7,8,9,0]
+symbols = ['!','@','#','$','%','^','&','*','(',')']
 
+nr_letters = random.randint(8,10)
+nr_numbers = random.randint(2,4)
+nr_symbols = random.randint(2,4)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
     
 def add_pass():
     file_path = 'data.txt'
+    website = website_entry.get()
+    email = uname_entry.get()
+    password = password_entry.get()
 
     try: 
         with open(file=file_path, mode='r') as file: 
@@ -13,18 +26,20 @@ def add_pass():
     except FileNotFoundError:
         content = ''
 
-    is_ok = messagebox.askokcancel(title=website_entry.get(),message=f"You are saving: \nEmail: {uname_entry.get()}"
-                           f"\nPassword: {password_entry.get()} \nIs it ok to save?")
-
-    if is_ok:
-        with open (file=file_path, mode='a') as file:
-            if content:
-                file.write(f"\n{website_entry.get()}|{uname_entry.get()}|{password_entry.get()}")
-            else: 
-                file.write(f"{website_entry.get()}|{uname_entry.get()}|{password_entry.get()}")
+    if len(website) == 0 or len(password) == 0:
+        messagebox.showwarning(title='Empty', message="Please don't leave any fields empty.")
+    else:
+        is_ok = messagebox.askokcancel(title=website,message=f"You are saving: \nEmail: {website}"
+                           f"\nPassword: {password} \nIs it ok to save?")
+    
+        if is_ok:
+            with open (file=file_path, mode='a') as file:
+                if content:
+                    file.write(f"\n{website} | {email} | {password}")
+                else: 
+                    file.write(f"{website} | {email} | {password}")
     
     website_entry.delete(first=0, last=END)
-    uname_entry.delete(first=0, last=END)
     password_entry.delete(first=0, last=END)
 
 # ---------------------------- UI SETUP ------------------------------- #
