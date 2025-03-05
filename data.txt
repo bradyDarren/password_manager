@@ -2,3 +2,5 @@ Amazon|sample@gmail.com|apple
 Amazon|sample@gmail.com|apple
 Apple|sample@gmail.com|Aplle
 Apple|sample@gmail.com|Apple
+a | sample@gmail.com | 
+1234 | sample@gmail.com | 12345
