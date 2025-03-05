@@ -12,6 +12,25 @@ symbols = ['!','@','#','$','%','^','&','*','(',')']
 nr_letters = random.randint(8,10)
 nr_numbers = random.randint(2,4)
 nr_symbols = random.randint(2,4)
+
+password_list = []
+
+for letters in range(nr_letters):
+    password_list.append(random.choice(letters))
+
+for num in range(nr_numbers):
+    password_list.append(random.choice(letters))
+
+for symbol in range(nr_symbols):
+    password_list.append(random.choice(symbols))
+
+random.shuffle(password_list)
+
+password = ''
+
+for char in password_list:
+    password += char
+
 # ---------------------------- SAVE PASSWORD ------------------------------- #
     
 def add_pass():
