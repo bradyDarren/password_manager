@@ -2,31 +2,32 @@ from tkinter import *
 from tkinter import messagebox
 import random
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
-letters = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-]
-numbers = [1,2,3,4,5,6,7,8,9,0]
-symbols = ['!','@','#','$','%','^','&','*','(',')']
+def gen_pass():    
+    letters = [
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        ]
+    numbers = [1,2,3,4,5,6,7,8,9,0]
+    symbols = ['!','@','#','$','%','^','&','*','(',')']
 
-nr_letters = random.randint(8,10)
-nr_numbers = random.randint(2,4)
-nr_symbols = random.randint(2,4)
+    nr_letters = random.randint(8,10)
+    nr_numbers = random.randint(2,4)
+    nr_symbols = random.randint(2,4)
 
-password_list = []
+    password_list = []
 
-letters_list = [random.choice(letters) for _ in range(nr_letters)]
+    letters_list = [random.choice(letters) for _ in range(nr_letters)]
 
-numbers_list = [str(random.choice(numbers)) for _ in range(nr_numbers)]
+    numbers_list = [str(random.choice(numbers)) for _ in range(nr_numbers)]
 
-symbols_list = [random.choice(symbols) for _ in range(nr_symbols)]
+    symbols_list = [random.choice(symbols) for _ in range(nr_symbols)]
 
-password_list = letters_list, symbols_list, numbers_list
-random.shuffle(password_list)
+    password_list = letters_list + symbols_list + numbers_list
+    random.shuffle(password_list)
 
-password = "".join(password_list)
+    password = "".join(password_list)
 
-# print(password)
+    # print(password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
     
@@ -87,7 +88,7 @@ password_entry = Entry(width=21)
 password_entry.grid(column=1, row=3)
 
 #Buttons
-generate_button = Button(text="Generate Password")
+generate_button = Button(text="Generate Password", command=gen_pass)
 generate_button.grid(column=2, row=3)
 add_button = Button(text="Add", width=36, command=add_pass)
 add_button.grid(column=1, row=4, columnspan=2)
