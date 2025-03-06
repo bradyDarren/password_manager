@@ -14,8 +14,6 @@ def gen_pass():
     nr_numbers = random.randint(2,4)
     nr_symbols = random.randint(2,4)
 
-    password_list = []
-
     letters_list = [random.choice(letters) for _ in range(nr_letters)]
 
     numbers_list = [str(random.choice(numbers)) for _ in range(nr_numbers)]
@@ -26,9 +24,7 @@ def gen_pass():
     random.shuffle(password_list)
 
     password = "".join(password_list)
-
-    # print(password)
-
+    password_entry.insert(0,password)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
     
 def add_pass():
@@ -46,7 +42,7 @@ def add_pass():
     if len(website) == 0 or len(password) == 0:
         messagebox.showwarning(title='Empty', message="Please don't leave any fields empty.")
     else:
-        is_ok = messagebox.askokcancel(title=website,message=f"You are saving: \nEmail: {website}"
+        is_ok = messagebox.askokcancel(title=website,message=f"You are saving: \nEmail: {email}"
                            f"\nPassword: {password} \nIs it ok to save?")
     
         if is_ok:
