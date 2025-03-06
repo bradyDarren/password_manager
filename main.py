@@ -21,18 +21,12 @@ numbers_list = [str(random.choice(numbers)) for _ in range(nr_numbers)]
 
 symbols_list = [random.choice(symbols) for _ in range(nr_symbols)]
 
-password_list += letters_list
-password_list += numbers_list
-password_list += symbols_list
-
+password_list = letters_list, symbols_list, numbers_list
 random.shuffle(password_list)
 
-password = ''
+password = "".join(password_list)
 
-for char in password_list:
-    password += char
-
-print(password)
+# print(password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
     
