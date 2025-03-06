@@ -15,14 +15,15 @@ nr_symbols = random.randint(2,4)
 
 password_list = []
 
-for letters in range(nr_letters):
-    password_list.append(random.choice(letters))
+letters_list = [random.choice(letters) for _ in range(nr_letters)]
 
-for num in range(nr_numbers):
-    password_list.append(random.choice(letters))
+numbers_list = [str(random.choice(numbers)) for _ in range(nr_numbers)]
 
-for symbol in range(nr_symbols):
-    password_list.append(random.choice(symbols))
+symbols_list = [random.choice(symbols) for _ in range(nr_symbols)]
+
+password_list += letters_list
+password_list += numbers_list
+password_list += symbols_list
 
 random.shuffle(password_list)
 
@@ -30,6 +31,8 @@ password = ''
 
 for char in password_list:
     password += char
+
+print(password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
     
