@@ -80,8 +80,8 @@ password = Label(text="Password:")
 password.grid(column=0, row=3)
 
 #Entries
-website_entry = Entry(width=38)
-website_entry.grid(column=1, row=1, columnspan=2)
+website_entry = Entry(width=21)
+website_entry.grid(column=1, row=1)
 website_entry.focus()
 uname_entry = Entry(width=38)
 uname_entry.grid(column=1, row=2, columnspan=2)
@@ -90,6 +90,8 @@ password_entry = Entry(width=21)
 password_entry.grid(column=1, row=3)
 
 #Buttons
+search_button = Button(text="Search",width=13)
+search_button.grid(column=2, row=1)
 generate_button = Button(text="Generate Password", command=gen_pass)
 generate_button.grid(column=2, row=3)
 add_button = Button(text="Add", width=36, command=add_pass)
