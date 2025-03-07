@@ -1,6 +1,7 @@
 from tkinter import * 
 from tkinter import messagebox
 import random
+import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def gen_pass():    
     letters = [
@@ -28,16 +29,21 @@ def gen_pass():
 # ---------------------------- SAVE PASSWORD ------------------------------- #
     
 def add_pass():
-    file_path = 'data.txt'
     website = website_entry.get()
     email = uname_entry.get()
     password = password_entry.get()
+    new_data = {
+         website:{
+              'email':email,
+              'password':password
+         }
+    }
 
     if len(website) == 0 or len(password) == 0:
         messagebox.showwarning(title='Empty', message="Please don't leave any fields empty.")
     else:
-        with open (file=file_path, mode='a') as file:
-                file.write(f"{website} | {email} | {password}\n")
+        with open (file='data.json', mode='w') as file:
+                json.dump(new_data, file)
                 website_entry.delete(first=0, last=END)
                 password_entry.delete(first=0, last=END)
 
