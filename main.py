@@ -43,7 +43,7 @@ def add_pass():
         messagebox.showwarning(title='Empty', message="Please don't leave any fields empty.")
     else:
         with open (file='data.json', mode='w') as file:
-                json.dump(new_data, file)
+                json.dump(obj=new_data, fp=file,indent=4)
                 website_entry.delete(first=0, last=END)
                 password_entry.delete(first=0, last=END)
 
