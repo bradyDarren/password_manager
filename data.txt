@@ -6,3 +6,4 @@ a | sample@gmail.com |
 1234 | sample@gmail.com | 12345
 Amazon | sample@gmail.com | 07EQI)GD$D#JH73
 Ebay | darren.sample@sample.com | 7PBQ$S1V3LNC!EG
+AMAZON | sample@gmail.com | #4Z9)LIBCHSJ
