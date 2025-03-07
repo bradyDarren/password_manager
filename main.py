@@ -42,10 +42,24 @@ def add_pass():
     if len(website) == 0 or len(password) == 0:
         messagebox.showwarning(title='Empty', message="Please don't leave any fields empty.")
     else:
-        with open (file='data.json', mode='w') as file:
+        try:
+            with open (file='data.json', mode='r') as file:
+                # Reading old data
+                data = json.load(fp=file)
+        except FileNotFoundError:
+            with open(file='data.json',mode='w') as file:
                 json.dump(obj=new_data, fp=file,indent=4)
+        else:
+            #Updating old data with new data
+            data.update(new_data)
+
+            with open(file='data.json',mode='w') as file:
+                #saving updated data
+                json.dump(obj=data, fp=file,indent=4)
+        finally:
                 website_entry.delete(first=0, last=END)
                 password_entry.delete(first=0, last=END)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk() 
