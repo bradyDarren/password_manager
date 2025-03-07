@@ -33,27 +33,13 @@ def add_pass():
     email = uname_entry.get()
     password = password_entry.get()
 
-    try: 
-        with open(file=file_path, mode='r') as file: 
-            content = file.read().strip()
-    except FileNotFoundError:
-        content = ''
-
     if len(website) == 0 or len(password) == 0:
         messagebox.showwarning(title='Empty', message="Please don't leave any fields empty.")
     else:
-        is_ok = messagebox.askokcancel(title=website,message=f"You are saving: \nEmail: {email}"
-                           f"\nPassword: {password} \nIs it ok to save?")
-    
-        if is_ok:
-            with open (file=file_path, mode='a') as file:
-                if content:
-                    file.write(f"\n{website} | {email} | {password}")
-                else: 
-                    file.write(f"{website} | {email} | {password}")
-    
-    website_entry.delete(first=0, last=END)
-    password_entry.delete(first=0, last=END)
+        with open (file=file_path, mode='a') as file:
+                file.write(f"{website} | {email} | {password}\n")
+                website_entry.delete(first=0, last=END)
+                password_entry.delete(first=0, last=END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk() 
