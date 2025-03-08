@@ -27,7 +27,6 @@ def gen_pass():
     password = "".join(password_list)
     password_entry.insert(0,password)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
-    
 def add_pass():
     website = website_entry.get()
     email = uname_entry.get()
@@ -59,8 +58,16 @@ def add_pass():
         finally:
                 website_entry.delete(first=0, last=END)
                 password_entry.delete(first=0, last=END)
-
-
+# -------------------- SEARCH EXISTING PASSWORDS ---------------------- #
+def search(): 
+    with open (file='data.json', mode='r') as file:
+        data = json.load(fp=file)
+        website = website_entry.get()
+        try: 
+            if website in data:
+                messagebox.showinfo(message=f"Email:{data[website]}")
+        except KeyError:
+            print("Input is not present within database.")
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk() 
 window.title("Password Manager")
@@ -90,7 +97,7 @@ password_entry = Entry(width=21)
 password_entry.grid(column=1, row=3)
 
 #Buttons
-search_button = Button(text="Search",width=13)
+search_button = Button(text="Search",width=13, command=search)
 search_button.grid(column=2, row=1)
 generate_button = Button(text="Generate Password", command=gen_pass)
 generate_button.grid(column=2, row=3)
