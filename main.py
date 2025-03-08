@@ -59,17 +59,20 @@ def add_pass():
                 website_entry.delete(first=0, last=END)
                 password_entry.delete(first=0, last=END)
 # -------------------- SEARCH EXISTING PASSWORDS ---------------------- #
-def search(): 
-    with open (file='data.json', mode='r') as file:
-        data = json.load(fp=file)
-        website = website_entry.get()
-        try: 
-            email = data[website]['email']
-            password = data[website]['password']
-        except KeyError:
-            messagebox.showinfo(message="Password for website doesn't exist.")
-        else:
-            messagebox.showinfo(message=f'Email: {email} \n Password: {password}')
+def search():
+    website = website_entry.get()
+    try:
+        with open (file='data.json', mode='r') as file:
+            data = json.load(fp=file)
+    except FileNotFoundError:
+            messagebox.showinfo(title='Error', message="No data file found")
+    try: 
+        email = data[website]['email']
+        password = data[website]['password']
+    except KeyError:
+        messagebox.showinfo(title='Not Found',message="Password for website doesn't exist.")
+    else:
+        messagebox.showinfo(title=website, message=f'Email: {email} \n Password: {password}')
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk() 
 window.title("Password Manager")
