@@ -65,7 +65,7 @@ def search():
         website = website_entry.get()
         try: 
             if website in data:
-                messagebox.showinfo(message=f"Email:{data[website]}")
+                messagebox.showinfo(message=f"Email: {data[website]['email']} \n Password: {data[website]['password']}")
         except KeyError:
             print("Input is not present within database.")
 # ---------------------------- UI SETUP ------------------------------- #
