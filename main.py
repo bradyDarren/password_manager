@@ -64,10 +64,12 @@ def search():
         data = json.load(fp=file)
         website = website_entry.get()
         try: 
-            if website in data:
-                messagebox.showinfo(message=f"Email: {data[website]['email']} \n Password: {data[website]['password']}")
+            email = data[website]['email']
+            password = data[website]['password']
         except KeyError:
-            print("Input is not present within database.")
+            messagebox.showinfo(message="Password for website doesn't exist.")
+        else:
+            messagebox.showinfo(message=f'Email: {email} \n Password: {password}')
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk() 
 window.title("Password Manager")
